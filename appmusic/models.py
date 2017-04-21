@@ -12,17 +12,22 @@ class Artist(models.Model):
     tags = models.TextField(blank=True)
     web = models.URLField(blank=True)
 
-
-
+    def __str__(self):
+        return u"%s" % self.nomArtista
 
 class Album(models.Model):
     nomAlbum = models.TextField()
     releasedate = models.TextField(blank=True)
     artist = models.ForeignKey(Artist, blank=True, null=True)
 
+    def __str__(self):
+        return u"%s" % self.nomAlbum
 
 class Track(models.Model):
     nomTrack = models.TextField()
     duration = models.IntegerField(blank=True, null=True)
     artist = models.ForeignKey(Artist, blank=True, null=True)
     album = models.ForeignKey(Album, blank=True, null=True)
+
+    def __str__(self):
+        return u"%s" % self.nomTrack
