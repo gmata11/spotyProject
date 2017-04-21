@@ -1,3 +1,15 @@
 SpotyProject API
 
 by Eduard Robinat & Gerard Mata
+
+Data models:
+
+    Artist
+    Album
+    Library
+
+Default users:
+
+    Role - Username - Password
+
+    Admin: gmata 1234qwer
