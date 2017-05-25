@@ -16,29 +16,32 @@ class LibrarySerializer(HyperlinkedModelSerializer):
 
 class ArtistSerializer(HyperlinkedModelSerializer):
     uri = HyperlinkedIdentityField(view_name='appmusic:artist_detail')
+    Library = HyperlinkedRelatedField(view_name='appmusic:library_detail', read_only=True)
     user = CharField(read_only=True)
 
     class Meta:
         model = Artist
-        fields = ('uri', 'nomArtista', 'tags', 'web')
+        fields = ('uri', 'nomArtista', 'tags', 'web', 'Library', 'user')
 
 
 class AlbumSerializer(HyperlinkedModelSerializer):
     uri = HyperlinkedIdentityField(view_name='appmusic:album_detail')
+    library = HyperlinkedRelatedField(view_name='appmusic:library_detail', read_only=True)
     artist = HyperlinkedRelatedField(view_name='appmusic:artist_detail', read_only=True)
     user = CharField(read_only=True)
 
     class Meta:
         model = Album
-        fields = ('uri', 'nomAlbum', 'releasedate', 'artist', 'user')
+        fields = ('uri', 'nomAlbum', 'releasedate', 'artist', 'library', 'user')
 
 
 class TrackSerializer(HyperlinkedModelSerializer):
     uri = HyperlinkedIdentityField(view_name='appmusic:track_detail')
+    library = HyperlinkedRelatedField(view_name='appmusic:library_detail', read_only=True)
     artist = HyperlinkedRelatedField(view_name='appmusic:artist_detail', read_only=True)
     album = HyperlinkedRelatedField(view_name='appmusic:album_detail', read_only=True)
     user = CharField(read_only=True)
 
     class Meta:
         model = Track
-        fields = ('uri', 'nomTrack', 'duration', 'artist', 'album', 'user')
+        fields = ('uri', 'nomTrack', 'duration', 'artist', 'album', 'library', 'user',)
