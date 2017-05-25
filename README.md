@@ -20,6 +20,7 @@ Main page: http://127.0.0.1:8000/appmusic/librarys
 Login screen: http://127.0.0.1:8000/accounts/login
 Logout screen: http://127.0.0.1:8000/accounts/logout/
 Admin panel: http://127.0.0.1:8000/admin/
+API: http://127.0.0.1:8000/musicapp/api/[librarys-artists-albums-tracks]
 ```
 ### Default users:
 ```
