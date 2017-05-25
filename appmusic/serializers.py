@@ -4,7 +4,7 @@ from rest_framework.serializers import HyperlinkedModelSerializer
 from .models import Library, Artist, Album, Track
 
 class LibrarySerializer(HyperlinkedModelSerializer):
-    uri = HyperlinkedIdentityField(view_name='appmusic:library_detail')
+    uri = HyperlinkedIdentityField(view_name='appmusic:library-detail')
     artists = HyperlinkedRelatedField(many=True, read_only=True, view_name='appmusic:library_detail')
     albums = HyperlinkedRelatedField(many=True, read_only=True, view_name='appmusic:album_detail')
     tracks = HyperlinkedRelatedField(many=True, read_only=True, view_name='appmusic:track_detail')
@@ -15,7 +15,7 @@ class LibrarySerializer(HyperlinkedModelSerializer):
         fields = ('uri','artists', 'albums', 'tracks', 'user')
 
 class ArtistSerializer(HyperlinkedModelSerializer):
-    uri = HyperlinkedIdentityField(view_name='appmusic:artist_detail')
+    uri = HyperlinkedIdentityField(view_name='appmusic:artist-detail')
     Library = HyperlinkedRelatedField(view_name='appmusic:library_detail', read_only=True)
     user = CharField(read_only=True)
 
@@ -25,7 +25,7 @@ class ArtistSerializer(HyperlinkedModelSerializer):
 
 
 class AlbumSerializer(HyperlinkedModelSerializer):
-    uri = HyperlinkedIdentityField(view_name='appmusic:album_detail')
+    uri = HyperlinkedIdentityField(view_name='appmusic:album-detail')
     library = HyperlinkedRelatedField(view_name='appmusic:library_detail', read_only=True)
     artist = HyperlinkedRelatedField(view_name='appmusic:artist_detail', read_only=True)
     user = CharField(read_only=True)
@@ -36,7 +36,7 @@ class AlbumSerializer(HyperlinkedModelSerializer):
 
 
 class TrackSerializer(HyperlinkedModelSerializer):
-    uri = HyperlinkedIdentityField(view_name='appmusic:track_detail')
+    uri = HyperlinkedIdentityField(view_name='appmusic:track-detail')
     library = HyperlinkedRelatedField(view_name='appmusic:library_detail', read_only=True)
     artist = HyperlinkedRelatedField(view_name='appmusic:artist_detail', read_only=True)
     album = HyperlinkedRelatedField(view_name='appmusic:album_detail', read_only=True)
@@ -44,4 +44,4 @@ class TrackSerializer(HyperlinkedModelSerializer):
 
     class Meta:
         model = Track
-        fields = ('uri', 'nomTrack', 'duration', 'artist', 'album', 'library', 'user',)
+        fields = ('uri', 'nomTrack', 'duration', 'artist', 'album', 'library', 'user')

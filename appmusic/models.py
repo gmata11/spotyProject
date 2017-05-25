@@ -26,7 +26,7 @@ class Artist(models.Model):
     def __str__(self):
         return u"%s" % self.nomArtista
     def get_absolute_url(self):
-        return reverse('appmusic:artist_detail', kwargs={'pk': self.pk})
+        return reverse('appmusic:artist_detail', kwargs={'pkr': self.Library.pk, 'pk': self.pk})
 
 class Album(models.Model):
     nomAlbum = models.TextField()
@@ -38,7 +38,7 @@ class Album(models.Model):
     def __str__(self):
         return u"%s" % self.nomAlbum
     def get_absolute_url(self):
-        return reverse('appmusic:album_detail', kwargs={'pkr': self.artist.pk, 'pk': self.pk})
+        return reverse('appmusic:album_detail', kwargs={'pkr': self.Library.pk, 'pk': self.pk})
 
 class Track(models.Model):
     nomTrack = models.TextField()
@@ -51,4 +51,4 @@ class Track(models.Model):
     def __str__(self):
         return u"%s" % self.nomTrack
     def get_absolute_url(self):
-        return reverse('appmusic:track_detail', kwargs={'pktr': self.artista.pk,'pkr': self.album.pk, 'pk': self.pk})
+        return reverse('appmusic:track_detail', kwargs={'pkr': self.Library.pk, 'pk': self.pk})
