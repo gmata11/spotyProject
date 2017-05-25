@@ -1,0 +1,16 @@
+{% extends "appmusic/base.html" %}
+
+{% block content %}
+
+<h1>
+    {{ album.nomAlbum }}
+</h1>
+
+<p><b>tags:</b> {{ album.tag }}</p>
+<p><b>Releasedate:</b> {{ album.releasedate }}</p>
+<p><b>Artist:</b>{{ album.artist }}</p>
+{% endblock %}
+
+{% block footer %}
+    Created by {{ album.user }}
+{% endblock %}

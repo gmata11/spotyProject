@@ -1,0 +1,19 @@
+{% extends "appmusic/base.html" %}
+
+{% block content %}
+
+<h1>
+    {{ track.nomTrack }}
+    {% if user == track.user %}
+        (<a href="{% url 'appmusic:track_edit' track.Library.id track.id %}">edit</a>)
+    {% endif %}
+</h1>
+<p><b>Duration:</b>  {{ track.duration }}s</p>
+<p><b>Published:</b>  {{ track.published }}</p>
+<p><b>Artist:</b>  {{ track.artist }}</p>
+<p><b>Album:</b>  {{ track.album }}</p>
+{% endblock %}
+
+{% block footer %}
+    Created by {{ track.user }}
+{% endblock %}
