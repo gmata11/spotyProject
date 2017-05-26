@@ -44,4 +44,4 @@ class TrackSerializer(HyperlinkedModelSerializer):
 
     class Meta:
         model = Track
-        fields = ('uri', 'nomTrack', 'duration', 'artist', 'album', 'Library', 'user',)
+        fields = ('uri', 'nomTrack', 'duration', 'published', 'artist', 'album', 'Library', 'user',)

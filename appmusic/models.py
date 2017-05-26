@@ -43,6 +43,7 @@ class Album(models.Model):
 class Track(models.Model):
     nomTrack = models.TextField()
     duration = models.IntegerField(blank=True, null=True)
+    published = models.IntegerField(blank=True, null=True)
     artist = models.ForeignKey(Artist, blank=True, null=True)
     album = models.ForeignKey(Album, blank=True, null=True)
     Library =  models.ForeignKey(Library, null=True, related_name='tracks')
