@@ -3,6 +3,8 @@
 Authors: Eduard Robinat && Gerard Mata
 
 
+
+
 ### Start the website
 ```
 python manage.py runserver
@@ -26,6 +28,7 @@ API: http://127.0.0.1:8000/musicapp/api/[librarys-artists-albums-tracks]
 ```
 Role - Username - Password
 
-Admin: gmata 1234qwer
-User: erobinat 1234qwer
+Admin: gmata 	  1234qwer
+Admin: erobinat   1234qwer
+User:  prova      1234qwer
 ```
