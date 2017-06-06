@@ -14,6 +14,10 @@ from django.utils import timezone
 from rest_framework import generics, permissions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+from .models import *
+from .forms import *
+from .serializers import *
+
 class ConnegResponseMixin(TemplateResponseMixin):
 
     def render_json_object_response(self, objects, **kwargs):
@@ -60,6 +64,11 @@ class LibraryList(ListView, ConnegResponseMixin):
 class LibraryDetail(DetailView, ConnegResponseMixin):
     model = Library
     template_name = 'appmusic/library_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LibraryDetail, self).get_context_data(**kwargs)
+        context['RATING_CHOICES'] = LibraryReview.RATING_CHOICES
+        return context
 
 class LibraryCreate(LoginRequiredMixin, CreateView):
     model = Library
@@ -133,6 +142,16 @@ class TrackDetail(DetailView, ConnegResponseMixin):
 
 @login_required()
 ### RESTful API views ###
+def review(request, pk):
+    library = get_object_or_404(Library, pk=pk)
+    review = LibraryReview(
+        rating=request.POST['rating'],
+        comment=request.POST['comment'],
+        user=request.user,
+        library=library)
+    review.save()
+    return HttpResponseRedirect(reverse('appmusic:library_detail', args=(library.id,)))
+
 
 class IsOwnerOrReadOnly(permissions.IsAuthenticatedOrReadOnly):
 
@@ -156,6 +175,16 @@ class APILibraryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Library.objects.all()
     serializer_class = LibrarySerializer
 
+class APILibraryReviewList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    model = LibraryReview
+    queryset = LibraryReview.objects.all()
+    serializer_class = LibraryReviewSerializer
+
+class APILibraryReviewDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = LibraryReview
+    serializer_class = LibraryReviewSerializer
 
 class APIArtistList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -169,7 +198,6 @@ class APIArtistDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
 
-
 class APIAlbumList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     model = Album
@@ -181,7 +209,6 @@ class APIAlbumDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Album
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
-
 
 class APITrackList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)

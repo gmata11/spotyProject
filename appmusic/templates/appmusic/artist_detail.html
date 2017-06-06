@@ -2,14 +2,18 @@
 
 {% block content %}
 
+<!--https://schema.org/MusicGroup (Can also be a solo musician) -->
+<span vocab="http://schema.org/"  typeof="MusicGroup">
+
 <h1>
-    {{ artist.nomArtista }}
+        <span property="alternateName">{{ artist.nomArtista }}</span>
     {% if user == artist.user %}
         (<a href="{% url 'appmusic:artist_edit' artist.Library.id artist.id %}">edit</a>)
     {% endif %}
 </h1>
 <p><b>tags:</b>  {{ artist.tags }}</p>
 <p><b>Webpage:</b>  {{ artist.web }}</p>
+<p><b>Summary:</b>  {{ artist.summary }}</p>
 {% endblock %}
 
 {% block footer %}
