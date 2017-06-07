@@ -12,7 +12,7 @@
     {% endif %}
 </h1>
 <p><b>tags:</b>  {{ artist.tags }}</p>
-<p><b>Webpage:</b>  {{ artist.web }}</p>
+<p><b>Webpage:</b>  <span property="url">{{ artist.web }}</span></p>
 <p><b>Summary:</b>  {{ artist.summary }}</p>
 {% endblock %}
 
