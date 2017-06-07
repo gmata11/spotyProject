@@ -12,9 +12,9 @@ python manage.py runserver
 ### Data models:
 ```
 Library: name, genere
-Artist: nomArtista, tags, web, Library, user
+Artist: nomArtista, tags, web, summary, Library, user
 Album: nomAlbum, releasedate, artist, Library, user
-Track: nomTrack, duration, artist, album, Library, user
+Track: nomTrack, duration, published, summary, artist, album, Library, user
 ```
 ### Subpages:
 ```
@@ -24,6 +24,12 @@ Logout screen: http://127.0.0.1:8000/accounts/logout/
 Admin panel: http://127.0.0.1:8000/admin/
 API: http://127.0.0.1:8000/musicapp/api/[librarys-artists-albums-tracks]
 ```
+
+### Structures DATA:
+```
+view-source: http://127.0.0.1:8000/appmusic/librarys/1
+```
+
 ### Default users:
 ```
 Role - Username - Password
