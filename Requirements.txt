@@ -2,7 +2,7 @@ appdirs==1.4.3
 chardet==2.3.0
 chrome-gnome-shell==0.0.0
 cupshelpers==1.0
-Django==1.11
+Django==1.11.23
 gufw==17.4.1
 louis==3.0.0
 npyscreen==4.10.5
